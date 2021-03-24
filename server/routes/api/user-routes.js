@@ -24,8 +24,9 @@ router.get('/users', (req, res) => {
   });
 })
 
-// get thoughts from a user
-router.get('/users/:username', (req, res) => {
+// route to get thoughts from a single user
+// matches with /api/users/:username GET
+router.get("/:username", (req, res) => {
   console.log(`Querying for thought(s) from ${req.params.username}.`);
   const params = {
     TableName: table,
@@ -33,24 +34,27 @@ router.get('/users/:username', (req, res) => {
     ExpressionAttributeNames: {
       "#un": "username",
       "#ca": "createdAt",
-      "#th": "thought"
+      "#th": "thought",
+      "#img": "image",
     },
     ExpressionAttributeValues: {
-      ":user": req.params.username
+      ":user": req.params.username,
     },
-    ProjectionExpression: "#th, #ca"
+    // determine which attributes to return
+    ProjectionExpression: "#img, #th, #ca, #un",
+    ScanIndexForward: false, // default value is true, which sorts ascending. set to false for descending (most recent posts on top)
   };
-
   dynamodb.query(params, (err, data) => {
     if (err) {
       console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
       res.status(500).json(err); // an error occurred
     } else {
       console.log("Query succeeded.");
-      res.json(data.Items)
+      res.json(data.Items);
     }
   });
 });
+
 
 // Create new user
 router.post('/users', (req, res) => {
