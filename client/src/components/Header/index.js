@@ -10,7 +10,7 @@ const Header = () => {
           style={{ fontWeight: 700 }}
           className="text-light"
         >
-          <h1>Deep Thoughts</h1>
+          <h1>AWS Thoughts</h1>
         </Link>{' '}
       </div>
     </header>

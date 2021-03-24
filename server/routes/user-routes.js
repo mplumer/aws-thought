@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const AWS = require("aws-sdk");
 const awsConfig = {
-  region: "us-east-2",
+  region: "us-east-1",
   endpoint: "http://localhost:8000",
 
 };
@@ -50,7 +50,7 @@ router.get('/users/:username', (req, res) => {
       res.json(data.Items)
     }
   });
-});
+}); // closes the route for router.get(users/:username)
 
 // Create new user
 router.post('/users', (req, res) => {
