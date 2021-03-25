@@ -3,7 +3,7 @@ const router = express.Router();
 // multer package will add a file property on the req object that contains the image file uploaded by the form
 const multer = require("multer");
 const AWS = require("aws-sdk");
-const paramsConfig = require("../../utils/params-config");
+const paramsConfig = require("../../utils/params.config");
 // create temporary storage to hold image files until they're uploaded to S3 bucket
 const storage = multer.memoryStorage({
   destination: (req, file, callback) => {
