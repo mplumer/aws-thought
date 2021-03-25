@@ -1,10 +1,10 @@
 :root {
-  --primary: #497573;
-  --secondary: #99f7f2;
-  --tertiary: #b2c2c1;
+  --primary: #3e5379;
+  --secondary: #8df3ee;
+  --tertiary: #22d357;
   --quatrinary: #cadbda;
   --light: #e1f5f4;
-  --dark: #6c7575;
+  --dark: #1f1e58;
   --error: rgb(228, 46, 1);
   --border-radius: 0.3rem;
   --spacing-one: calc(1rem * 0.25);
@@ -100,11 +100,117 @@ nav a:hover {
   background-color: var(--dark);
 }
 
-.page-title {
+header {
+  align-items: center;
+  display: flex;
+  font-size: 18px;
+  height: 30vh;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
   text-align: center;
-  width: 100%;
-  margin: 0;
-  font-size: 2.5rem;
+  transform-style: preserve-3d;
+  perspective: 100px;
+}
+
+header:before {
+  animation: slide-up 2s .5s cubic-bezier(0, 0.5, 0, 1) forwards;
+  background-size: 20rem;
+  content: "";
+  opacity: 0;
+  position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  z-index: -1;
+}
+
+header:after {
+  animation: rotate-up .5s .5s cubic-bezier(0, 0.5, 0, 1) forwards;
+  background: var(--primary);
+  content: "DEEPER Thoughts";
+  height: 40rem;
+  left: -5%;
+  position: absolute;
+    right: -5%;
+    top: 90%;
+  transform-origin: 0 0;
+  z-index: 0;
+  color: var(--secondary);
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.header-title, .header-subtitle {
+  color: var(--primary);
+}
+
+.header-subtitle {
+  text-transform: uppercase;
+  margin-bottom: 5rem;
+}
+
+.header-button {
+  transform: translateZ(.1px);
+  position: relative;
+  z-index: 10;
+}
+
+.animate-pop-in {
+  animation: pop-in .6s cubic-bezier(0, 0.9, 0.3, 1.2) forwards;
+  opacity: 0;
+}
+
+.mind {
+  animation-delay: .6s;
+  height: 300px;
+  width: 375px;
+  padding-bottom: 1em;
+
+}
+
+.header-title {
+  animation-delay: .8s;
+}
+
+.header-subtitle {
+  animation-delay: 1s;
+}
+
+.header-button {
+  animation-delay: 1.1s;
+}
+
+
+/* Animations */
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(-4rem);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-4rem) scale(.8);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rotate-up {
+  100% {
+    transform: rotateZ(-2deg);
+  }
 }
 
 .btn,
@@ -117,13 +223,13 @@ nav a:hover {
   border: none;
   color: var(--dark);
   outline: none;
-  background-color: var(--secondary);
+  background-color: var(--tertiary);
   transition: all 0.5s;
 }
 
 .btn:hover,
 .pill:hover {
-  color: var(--secondary);
+  color: var(--tertiary);
   background-color: var(--dark);
 }
 
